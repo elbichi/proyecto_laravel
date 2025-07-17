@@ -8,9 +8,10 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Middleware\UserController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
+//dasbhoard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,17 +21,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::resorce('categorias', CategoriaController::class);
-Route::resorce('subcategorias', SubCategoriaController::class);
-Route::resorce('productos', ProductoController::class);
+Route::resource('categorias', CategoriaController::class);
+Route::resource('subcategorias', SubCategoriaController::class);
+Route::resource('productos', ProductoController::class);
 Route::middleware('auth','admin')->group(function(){
     Route::resource('usuarios', UserController::class);
 });
 
 Route::middleware('auth','coordinador')->group(function(){
-    Route::resource('productos', ProductoController::class)->execept(['destroy']);
-    Route::resource('categorias', ProductoController::class)->execept(['destroy']);
-    Route::resource('subcategorias', ProductoController::class)->execept(['destroy']);
+    Route::resource('productos', ProductoController::class)->except(['destroy']);
+    Route::resource('categorias', ProductoController::class)->except(['destroy']);
+    Route::resource('subcategorias', ProductoController::class)->except(['destroy']);
     
 });
 

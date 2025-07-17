@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->unsignedBigInteger('categoria_id');
             $table->unsignedBigInteger('subcategoria_id');
-            $table->foreing('categoria_id')->references('id')->on('categorias')->onDelete('cascade'); 
-            $table->foreing('subcategoria_id')->references('id')->on('subcategorias')->onDelete('cascade'); 
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('subcategoria_id')->references('id')->on('subcategorias')->onDelete('cascade');
             $table->timestamps();
         });
     }
