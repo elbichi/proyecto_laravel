@@ -24,15 +24,11 @@ Route::middleware('auth')->group(function () {
 Route::resource('categorias', CategoriaController::class);
 Route::resource('subcategorias', SubCategoriaController::class);
 Route::resource('productos', ProductoController::class);
+
+
+
 Route::middleware('auth','admin')->group(function(){
     Route::resource('usuarios', UserController::class);
-});
-
-Route::middleware('auth','coordinador')->group(function(){
-    Route::resource('productos', ProductoController::class)->except(['destroy']);
-    Route::resource('categorias', ProductoController::class)->except(['destroy']);
-    Route::resource('subcategorias', ProductoController::class)->except(['destroy']);
-    
 });
 
 require __DIR__.'/auth.php';
