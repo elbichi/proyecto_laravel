@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <a href="{{ route('categorias.create') }}" class="inline-block mb-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Nueva Categoría</a>
+        <a href="{{ route('categorias.create') }}" class="inline-block mb-3 px-4 py-2 bg-blue-600 text-black rounded hover:bg-blue-700 transition">Nueva Categoría</a>
         @if(session('success'))
             <div class="mb-4 p-2 bg-green-100 text-green-800 rounded">{{ session('success') }}</div>
         @endif

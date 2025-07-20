@@ -4,7 +4,8 @@
             {{ __('Editar Categoría') }}
         </h2>
     </x-slot>
-    <div class="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded shadow mt-6">
+    <div class="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded shadow mt-6"
+    
         <form action="{{ route('categorias.update', $categoria->id) }}" method="POST">
             @csrf
             @method('PUT')

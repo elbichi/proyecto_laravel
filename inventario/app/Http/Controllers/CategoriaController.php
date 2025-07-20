@@ -37,7 +37,7 @@ class CategoriaController extends Controller
             'nombre'=>'required|string|max:255',
 
         ]);
-        \App\Models\Categoria::create([
+        Categoria::create([
             'nombre'=>$request->nombre,
         ]);
 
@@ -49,7 +49,7 @@ class CategoriaController extends Controller
      */
     public function show(string $id)
     {
-       $categoria = App\Models\Categoria::findOrFail($id);
+       $categoria = Categoria::findOrFail($id);
         return view('categorias.show', compact('categoria'));
     }
 
@@ -58,7 +58,7 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        $categoria = \App\Models\Categoria::findOrFail($id);
+        $categoria = Categoria::findOrFail($id);
         return view('categorias.editar', compact('categoria'));
     }
 
@@ -70,7 +70,12 @@ class CategoriaController extends Controller
         $request->validate([
             'nombre' =>'required|string|max:255',
         ]);
-        $categoria = \App\Models\Categoria::findOrFail($id);
+        $categoria = Categoria::findOrFail($id);
+        $categoria ->nombre= $request->nombre;
+        $categoria->save();
+
+
+     return redirect()->route('categorias.index')->with('success','Categoria editada  correctamente');
 
 
     }
@@ -80,7 +85,7 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        $categoria = App\Models\Categoria::findOrFail($id);
+        $categoria = Categoria::findOrFail($id);
         $categoria->delete();
         return redirect()->route('categorias.index')->with('success', 'Categoría eliminada exitosamente.');
     }
